@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello React</title>
+    <script src="/_react.js"></script>
+    <script src="/_jsx.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/jsx">
+      /** @jsx React.DOM */
+
+      var UncontrolledComponent = React.createClass({
+        getInitialState: function() {
+          return { value: '' };
+        },
+        handleChange: function(event) {
+          // Convert input to uppercase:
+          var value = event.target.value.toUpperCase();
+          this.setState({ value: value });
+        },
+        render: function() {
+          // Convert white space to new lines:
+          var renderedValue = this.state.value.replace(/\s+/g, '<br>');
+          return (
+            <div>
+              <textarea onChange={this.handleChange}>
+                This is the default value of the textarea.
+              </textarea>
+              <br />
+              <span dangerouslySetInnerHTML={{__html: renderedValue}}></span>
+            </div>
+          );
+        }
+      });
+
+      React.renderComponent(
+        <UncontrolledComponent />,
+        document.getElementById('example')
+      );
+    </script>
+    <h2>Things Learned</h2>
+    <ul>
+      <li>Setting <tt>value</tt> on a component within <tt>render</tt> will statically set its value – it is unchangable. In order to correctly set it, you must use <tt>defaultValue</tt>.</li>
+      <li>In order to render ras HTML as HTML, you must set the component value via <tt>dangerouslySetInnerHTML={{__html: renderedValue}}</tt></li>
+    </ul>
+  </body>
+</html>

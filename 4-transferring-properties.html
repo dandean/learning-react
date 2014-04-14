@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello React</title>
+    <script src="/_react.js"></script>
+    <script src="/_jsx.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/jsx">
+      /** @jsx React.DOM */
+      var CheckLink = React.createClass({
+        render: function() {
+          // transferPropsTo() will take any props passed to CheckLink
+          // and copy them to <a>
+          return this.transferPropsTo(<a>{'√ '}{this.props.children}</a>);
+        }
+      });
+
+      React.renderComponent(
+        <CheckLink href="javascript:alert('Hello, world!');">
+          Click here!
+        </CheckLink>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

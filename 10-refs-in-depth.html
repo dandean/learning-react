@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello React</title>
+    <script src="/_react.js"></script>
+    <script src="/_jsx.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/jsx">
+      /** @jsx React.DOM */
+
+      var MyComponent = React.createClass({
+        getInitialState: function() {
+          return { };
+        },
+        handleChange: function(event) {
+          this.setState({ value: event.target.value });
+        },
+        clearAndFocusInput: function() {
+          this.setState({ value: '' }); // Clear the input
+          this.refs.theInput.getDOMNode().focus();   // Boom! Focused!
+        },
+        render: function() {
+          return (
+            <div>
+              <div onClick={this.clearAndFocusInput}>
+                Click To Focus and Reset
+              </div>
+              <input ref="theInput" value={this.state.value} onChange={this.handleChange} />
+            </div>
+          );
+        }
+      });
+
+      React.renderComponent(
+        <MyComponent />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello React</title>
+    <script src="/_react.js"></script>
+    <script src="/_jsx.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/jsx">
+      /** @jsx React.DOM */
+
+      var HelloWorld = React.createClass({
+        render: function() {
+          return (
+            <p>
+              Hello, <input type="text" placeholder="Your name here" />!
+              It is {this.props.date}
+            </p>
+          );
+        }
+      });
+
+      setInterval(function() {
+        React.renderComponent(
+          <HelloWorld date={'Radical'} />,
+          document.getElementById('example')
+        );
+      }, 500);
+    </script>
+  </body>
+</html>

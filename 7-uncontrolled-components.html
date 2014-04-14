@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello React</title>
+    <script src="/_react.js"></script>
+    <script src="/_jsx.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/jsx">
+      /** @jsx React.DOM */
+
+      var UncontrolledComponent = React.createClass({
+        getInitialState: function() {
+          return {};
+        },
+        handleChange: function(event) {
+          var value = event.target.value.toUpperCase();
+          this.setState({ value: value });
+        },
+        render: function() {
+          return (
+            <div>
+              <input type="text" onChange={this.handleChange} /><br />
+              {this.state.value}
+            </div>
+          );
+        }
+      });
+
+      React.renderComponent(
+        <UncontrolledComponent />,
+        document.getElementById('example')
+      );
+    </script>
+    <h2>Things Learned</h2>
+    <ul>
+      <li>In order to set state, state much get an initual state of <tt>{}</tt></li>
+      <li>All JSX is XHTML-like - it must have a closing tag. <tt>&lt;br&gt;</tt> must be <tt>&lt;br /&gt;</tt>.</li>
+    </ul>
+  </body>
+</html>
