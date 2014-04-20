@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>Hello React</title>
-    <script src="/_react.js"></script>
-    <script src="/_jsx.js"></script>
+    <script src="../_react.js"></script>
+    <script src="../_jsx.js"></script>
   </head>
   <body>
     <div id="example"></div>
@@ -14,8 +14,14 @@
         render: function() {
           return (
             <div>
-              <ProfilePic username={this.props.username} />
-              <ProfileLink username={this.props.username} />
+              {this.props.username.map(function(name){
+                return (
+                  <div>
+                    <ProfilePic username={name} />
+                    <ProfileLink username={name} />
+                  </div>
+                )
+              })}
             </div>
           );
         }
@@ -40,7 +46,7 @@
       });
 
       React.renderComponent(
-        <Avatar username="pwh" />,
+        <Avatar username={["pwh", "dandean"]} />,
         document.getElementById('example')
       );
     </script>
